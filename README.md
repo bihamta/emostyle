@@ -1,2 +1,1 @@
-# emostyleva
-EmoStyle project page
+WACV 2024

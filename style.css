@@ -1,0 +1,57 @@
+h1 {
+	margin-bottom: 2rem;
+}
+
+
+a {
+	color: #7ad109;
+}
+
+
+a:hover {
+  color: #345a02;
+  text-decoration: none;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 3px solid #7ad109;
+}
+
+p {
+  text-align: justify;
+}
+
+td {
+  font-size: 5px;
+  padding: 2px;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 1.3em;
+  width:80%;
+}
+
+.current_tab{font-weight: bold;}
+
+.subdued_text{
+  color: #6e1919;
+  margin: 0px 1em 1em 0px;
+}
+
+.blank{
+  height: 2em;
+  clear: both;
+}
+
+.label-info {
+  background-color: #345a02;
+}
+
+.label-info[href]:hover {
+  background-color: #7ad109;
+}
