@@ -2,7 +2,7 @@
 
 
 
-<!--<h2> 🙁🙂😐 EmoStyle <span style="font-size:12px">One-Shot Facial Expression Editing Using Continuous Emotion Parameters</span> </h2> -->
+<h2> 🙁🙂😐 EmoStyle <span style="font-size:12px">One-Shot Facial Expression Editing Using Continuous Emotion Parameters</span> </h2>
 
 ![Python 3.9](https://img.shields.io/badge/Python-3.9-red)
 ![Torch 1.9](https://img.shields.io/badge/torch-1.9-green)
@@ -20,16 +20,18 @@
     Simon Fraser University &emsp;
 </div>
 <br>
+  <p align="center">
+    <img src="resrc/first_page.png" width="300" height="325.53" alt="Barak Obama">
+  </p>
+<br>
+<br>
 <i><strong><a href='https://openaccess.thecvf.com/content/WACV2024/papers/Azari_EmoStyle_One-Shot_Facial_Expression_Editing_Using_Continuous_Emotion_Parameters_WACV_2024_paper.pdf' target='_blank'>WACV 2024</a></strong></i>
 <br>
 <br>
-
-
-<p align="center">
-  <img src="resrc/barak_obama.gif" width="400" height="300" alt="Barak Obama">
-  <img src="resrc/taylor_swift.gif" width="400" height="300" alt="Taylor Swift">
-</p>
-
+  <p align="center">
+    <img src="resrc/barak_obama.gif" width="200" height="200" alt="Barak Obama">
+    <img src="resrc/taylor_swift.gif" width="200" height="200" alt="Taylor Swift">
+  </p>
 <br>
 
 </div>
