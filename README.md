@@ -21,7 +21,8 @@
 </div>
 <br>
   <p align="center">
-    <img src="resrc/first_page.png" width="300" height="325.53" alt="Barak Obama">
+    <img src="resrc/first_page.png" width="300">
+    <img src="resrc/sup_ood.png" width="300">
   </p>
 <br>
 <br>
