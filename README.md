@@ -20,12 +20,12 @@
     Simon Fraser University &emsp;
 </div>
 <br>
+<i><strong><a href='https://openaccess.thecvf.com/content/WACV2024/papers/Azari_EmoStyle_One-Shot_Facial_Expression_Editing_Using_Continuous_Emotion_Parameters_WACV_2024_paper.pdf' target='_blank'>WACV 2024</a></strong></i>
+<br>
+<br>
   <p align="center">
     <img src="resrc/git.png" height="400">
   </p>
-<br>
-<br>
-<i><strong><a href='https://openaccess.thecvf.com/content/WACV2024/papers/Azari_EmoStyle_One-Shot_Facial_Expression_Editing_Using_Continuous_Emotion_Parameters_WACV_2024_paper.pdf' target='_blank'>WACV 2024</a></strong></i>
 <br>
 <br>
   <p align="center">
