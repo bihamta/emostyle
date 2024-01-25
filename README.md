@@ -2,7 +2,7 @@
 
 
 
-<h2> 🙁🙂😐 EmoStyle <span style="font-size:12px">One-Shot Facial Expression Editing Using Continuous Emotion Parameters</span> </h2>
+<h2> 🙂😐🙁 EmoStyle <span style="font-size:12px">One-Shot Facial Expression Editing Using Continuous Emotion Parameters</span> </h2>
 
 ![Python 3.9](https://img.shields.io/badge/Python-3.9-red)
 ![Torch 1.9](https://img.shields.io/badge/torch-1.9-green)
