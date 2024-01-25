@@ -21,8 +21,7 @@
 </div>
 <br>
   <p align="center">
-    <img src="resrc/first_page.png" width="300">
-    <img src="resrc/sup_ood.png" width="300">
+    <img src="resrc/git.png" height="400">
   </p>
 <br>
 <br>
@@ -30,8 +29,8 @@
 <br>
 <br>
   <p align="center">
-    <img src="resrc/barak_obama.gif" width="200" height="200" alt="Barak Obama">
-    <img src="resrc/taylor_swift.gif" width="200" height="200" alt="Taylor Swift">
+    <img src="resrc/barak_obama.gif" width="300" height="300" alt="Barak Obama">
+    <img src="resrc/taylor_swift.gif" width="300" height="300" alt="Taylor Swift">
   </p>
 <br>
 
