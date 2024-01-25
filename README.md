@@ -26,9 +26,9 @@
   </p>
 <br> -->
 </div>
-<div>
-![](resrc/git.png)
 
+![](resrc/git.png)
+<div>
 > ** EmoStyle: One-Shot Facial Expression Editing Using Continuous Emotion Parameters**<br>
 > Bita Azari, Angelica Lim <br>
 >
