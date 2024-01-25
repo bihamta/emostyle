@@ -6,28 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
   <meta charset="utf-8">
 
-  <!--Facebook preview-->
-  <!-- <meta property="og:image" content="https://imagine.enpc.fr/~monniert/DTIClustering/thumbnail.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="600">
-  <meta property="og:image:height" content="400">
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://imagine.enpc.fr/~monniert/DTIClustering/"/>
-  <meta property="og:title" content="DTI Clustering"/>
-  <meta property="og:description" content="Project page for Deep Transformation-Invariant Clustering."/> -->
-
-  <!--Twitter preview-->
-  <!-- <meta name="twitter:card" content="summary_large_image" /> -->
-  <!-- <meta name="twitter:title" content="DTI Clustering" /> -->
-  <!-- <meta name="twitter:description" content="Project page for Deep Transformation-Invariant Clustering."/> -->
-  <!-- <meta name="twitter:image" content=""> -->
-  <!--Style-->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="style.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-
 </head>
 <body>
 
@@ -45,14 +23,6 @@
       </h4>
       *Simon Fraser University, <nobr>Burnaby</nobr>, <nobr>BC</nobr>, Canada
     </div>
-    <!-- <div class="hidden-xs hidden-sm col-md-1" style="text-align:left; margin-left:0px; margin-right:0px">
-      <a href="https://arxiv.org/pdf/2006.11132.pdf" style="color:inherit">
-        <i class="fa fa-file-pdf-o fa-4x"></i></a> 
-    </div>
-    <div class="hidden-xs hidden-sm col-md-2" style="text-align:left; margin-left:0px;">
-      <a href="https://github.com/monniert/dti-clustering" style="color:inherit">
-        <i class="fa fa-github fa-4x"></i></a>
-    </div> -->
   </div>
 </div>
 
@@ -60,7 +30,7 @@
   <img src="resrc/samples.png" alt="samples.png" class="text-center" style="width: 100%; max-width: 1100px">
   <h3 style="text-align:center; padding-top:1rem">
     <a class="label label-info" href="https://openaccess.thecvf.com/content/WACV2024/papers/Azari_EmoStyle_One-Shot_Facial_Expression_Editing_Using_Continuous_Emotion_Parameters_WACV_2024_paper.pdf">Paper</a>
-    <a class="label label-info" href="">Code<span style="font-size: smaller; font-weight: normal;"> (coming soon)</span></a>
+    <a class="label label-info" href="https://github.com/bihamta/emostyle">Code<span style="font-size: smaller; font-weight: normal;"> </span></a>
     <!-- <a class="label label-info" href="https://www.youtube.com/embed/j20MBc1hWGQ">Video</a>
     <a class="label label-info" href="resrc/dtic_long.pptx">Slides</a>
     <a class="label label-info" href="resrc/ref.bib">BibTeX</a> -->
@@ -79,72 +49,6 @@
     We also proposed an adapted inversion method to be able to apply our system on out-of-StyleGAN2 domain (OOD) images in a one-shot manner.
     The qualitative and quantitative evaluations show that our approach has the capability to synthesize a wide range of expressions to output high-resolution images.
   </p>
-
-  <!-- <h3>Video</h3>
-  <hr/>
-  <div class="row" style="text-align:center">
-    <div class="col-xs-6 text-center">
-      <h4><u>Short presentation</u> (3min)</h4>
-      <div class="embed-responsive embed-responsive-16by9" style="text-align:center">
-        <iframe class="embed-responsive-item text-center" src="https://www.youtube.com/embed/j20MBc1hWGQ" frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          style="width:100%; clip-path:inset(1px 1px);" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="col-xs-6 text-center">
-      <h4><u>Long presentation</u> (11min)</h4>
-      <div class="embed-responsive embed-responsive-16by9" style="text-align:center">
-        <iframe class="embed-responsive-item text-center" src="https://www.youtube.com/embed/xhLUOh5PKBA" frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          style="width:100%; clip-path:inset(1px 1px);" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <h3>Approach</h3>
-  <hr/>
-  <div class="row" style="text-align: center">
-    <div class="col-xs-6">
-      <h4 style="margin-right: 20%"><u>DTI framework</u></h4>
-    </div>
-    <div class="col-xs-6">
-      <h4><u>Deep transformation module 
-          <img src="http://latex.codecogs.com/svg.latex?\mathcal{T}_{f_{k}}" alt="T_f_k" border="0"/></u></h4>
-    </div>
-  </div>
-  <div class="row" style="text-align: center">
-    <div class="col-xs-6">
-      <img src="resrc/dti.png" alt="dti.png" class="text-center" style="width: 100%; max-width: 900px">
-    </div>
-    <div class="col-xs-6">
-      <img src="resrc/deep_tsf.png" alt="deep_tsf.png" class="text-center" style="width: 90%; max-width: 900px; margin-top:
-      10px">
-    </div>
-  </div>
-  <div class="row" style="text-align: center">
-    <div class="col-xs-6">
-      <div style="width: 90%; max-width: 900px; padding-top:10px">
-      <p>Given a sample <img src="http://latex.codecogs.com/svg.latex?x_i" alt="x_i" border="0"/> and prototypes 
-      <img src="http://latex.codecogs.com/svg.latex?c_1" alt="c_1" border="0"/> and 
-      <img src="http://latex.codecogs.com/svg.latex?c_2" alt="c_2" border="0"/>, standard clustering such as K-means 
-      assigns the sample to the closest prototype. Our DTI clustering first aligns prototypes to the sample using a
-      family of parametric transformations - here rotations - then picks the prototype whose alignment yields the 
-      smallest distance.</p>
-      </div>
-    </div>
-    <div class="col-xs-6">
-      <div style="width: 100%; max-width: 900px; padding-top:10px">
-        <p>We predict alignment with deep learning. Given an image 
-      <img src="http://latex.codecogs.com/svg.latex?x_i" alt="x_i" border="0"/>, each deep parameter predictor 
-      <img src="http://latex.codecogs.com/svg.latex?f_k" alt="f_k" border="0"/> predicts 
-      parameters for a sequence of transformations - here affine, morphological and thin plate spline transformations -
-      to align the prototype <img src="http://latex.codecogs.com/svg.latex?c_k" alt="c_k" border="0"/>
-      to the query image <img src="http://latex.codecogs.com/svg.latex?x_i" alt="x_i" border="0"/>.</p>
-      </div>
-    </div>
-  </div> -->
-
 
   <h3>Approach</h3>
   <hr/>
@@ -184,21 +88,22 @@
   </div>
   
 
-  <!-- <h3>Resources</h3>
+  <h3>Resources</h3>
   <hr/>
     <h4 style="padding-top:0.5em">BibTeX</h4>
     If you find this work useful for your research, please cite:
     <div class="card">
       <div class="card-block">
         <pre class="card-text clickselect">
-    @unpublished{AzariBita2023,
-      author = {Bita Azari, Angelica Lim},
-      title = {EmoStyle: One-Shot Facial Expression Editing Using Continuous Emotion Parameters},
-      note = {Unpublished work},
-      year = {2023}
-    }
+          @inproceedings{azari2024emostyle,
+            title={EmoStyle: One-Shot Facial Expression Editing Using Continuous Emotion Parameters},
+            author={Azari, Bita and Lim, Angelica},
+            booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
+            pages={6385--6394},
+            year={2024}
+          }
       </div>
-    </div> -->
+    </div>
 
   <!-- <h3>Further information</h3>
   <hr/>
@@ -237,6 +142,33 @@
     Ramamonjisoa, Vincent Lepetit, Elliot Vincent, Jean Ponce, William Peebles and Alexei Efros for inspiring 
     discussions and valuable feedback.
   </p>
+</div> -->
+<!-- 
+<div class="container" id="license">
+  <h3>MIT License</h3>
+  <pre>
+      MIT License
+
+      Copyright (c) [Year] [Your Name]
+
+      Permission is hereby granted, free of charge, to any person obtaining a copy
+      of this software and associated documentation files (the "Software"), to deal
+      in the Software without restriction, including without limitation the rights
+      to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+      copies of the Software, and to permit persons to whom the Software is
+      furnished to do so, subject to the following conditions:
+
+      The above copyright notice and this permission notice shall be included in all
+      copies or substantial portions of the Software.
+
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+      IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+      FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+      AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+      LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+      OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+      SOFTWARE.
+  </pre>
 </div> -->
 
 <div class="container" style="padding-top:3rem; padding-bottom:3rem">
