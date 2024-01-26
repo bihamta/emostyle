@@ -18,7 +18,7 @@ from tqdm import tqdm
 from lpips import LPIPS
 
 import pytorch_msssim
-from dataset import SyntheticDataset
+from dataset import PersonalizedSyntheticDataset
 from models.emo_mapping import EmoMappingW, EmoMappingWplus
 from models.landmark import FaceAlignment
 from models.emonet import EmoNet
