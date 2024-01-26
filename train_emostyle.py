@@ -1,6 +1,8 @@
 import os
 import pickle
 import random
+import argparse
+
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -234,12 +236,24 @@ def train(
 
         
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Train script for your program")
+    
+    parser.add_argument("--datapath", required=True, help="Path to the dataset")
+    parser.add_argument("--stylegan2_checkpoint_path", required=True, help="Path to the StyleGAN2 checkpoint")
+    parser.add_argument("--vggface2_checkpoint_path", required=True, help="Path to the VGGFace2 checkpoint")
+    parser.add_argument("--emonet_checkpoint_path", required=True, help="Path to the Emonet checkpoint")
+    parser.add_argument("--log_path", required=True, help="Path to the log directory")
+    parser.add_argument("--output_path", required=True, help="Path to the output directory")
+    parser.add_argument("--wplus", action="store_true", help="Enable wplus (if provided)")
+
+    args = parser.parse_args()
+
     train(
-        datapath="dataset/1024_pkl/", 
-        stylegan2_checkpoint_path="pretrained/ffhq2.pkl", 
-        vggface2_checkpoint_path="pretrained/resnet50_ft_weight.pkl", 
-        emonet_checkpoint_path="pretrained/emonet_8.pth",
-        log_path="logs/",
-        output_path="checkpoints/",
-        wplus=True
-)
+        datapath=args.datapath,
+        stylegan2_checkpoint_path=args.stylegan2_checkpoint_path,
+        vggface2_checkpoint_path=args.vggface2_checkpoint_path,
+        emonet_checkpoint_path=args.emonet_checkpoint_path,
+        log_path=args.log_path,
+        output_path=args.output_path,
+        wplus=args.wplus
+    )

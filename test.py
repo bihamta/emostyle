@@ -1,6 +1,7 @@
 import os
 import pickle
 import random
+import argparse
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -155,15 +156,28 @@ def test(
         plt.savefig(output_path + "result_{}".format(image_name), bbox_inches='tight')
         
 if __name__ == "__main__":
-        test(
-            images_path="dataset/1024_pkl/",
-            stylegan2_checkpoint_path="pretrained/ffhq2.pkl", 
-            checkpoint_path="checkpoints/emo_mapping_w.pt",
-            output_path="results/",
-            test_mode = 'random',
-            valence= [0,-0.5, 0.2],
-            arousal= [0,-0.5, 0.2],
-            wplus=False
-        )
+    parser = argparse.ArgumentParser(description="Testing script")
+    
+    parser.add_argument("--images_path", type=str, default="dataset/1024_pkl/")
+    parser.add_argument("--stylegan2_checkpoint_path", type=str, default="pretrained/ffhq2.pkl")
+    parser.add_argument("--checkpoint_path", type=str, default="checkpoints/emo_mapping_w.pt")
+    parser.add_argument("--output_path", type=str, default="results/")
+    parser.add_argument("--test_mode", type=str, default="random")
+    parser.add_argument("--valence", type=float, nargs='+', default=[0.5])
+    parser.add_argument("--arousal", type=float, nargs='+', default=[0.5])
+    parser.add_argument("--wplus", type=bool, default=False)
+
+    args = parser.parse_args()
+
+    test(
+        images_path=args.images_path,
+        stylegan2_checkpoint_path=args.stylegan2_checkpoint_path,
+        checkpoint_path=args.checkpoint_path,
+        output_path=args.output_path,
+        test_mode=args.test_mode,
+        valence=args.valence,
+        arousal=args.arousal,
+        wplus=args.wplus
+    )
 
         

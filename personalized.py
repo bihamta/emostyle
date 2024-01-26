@@ -1,6 +1,7 @@
 import os
 import pickle
 import random
+import argparse
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -242,14 +243,28 @@ def train(
                os.path.join(output_path, 'EmoStyle_{}_{}_{}.pt'.format(inversion_type, ITER_NUM, person_name)))
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Personalized training script")
+
+    parser.add_argument("--datapath", type=str, default="experiments/personalized_single_4/")
+    parser.add_argument("--stylegan2_checkpoint_path", type=str, default="pretrained/ffhq2.pkl")
+    parser.add_argument("--emo_mapping_checkpoint_path", type=str, default="checkpoints/emo_mapping_wplus/emo_mapping_wplus_2.pt")
+    parser.add_argument("--vggface2_checkpoint_path", type=str, default="pretrained/resnet50_ft_weight.pkl")
+    parser.add_argument("--emonet_checkpoint_path", type=str, default="pretrained/emonet_8.pth")
+    parser.add_argument("--log_path", type=str, default="logs/personalized")
+    parser.add_argument("--inversion_type", type=str, default="e4e")
+    parser.add_argument("--output_path", type=str, default="checkpoints/")
+    parser.add_argument("--wplus", type=bool, default=True)
+
+    args = parser.parse_args()
+
     train(
-        datapath="experiments/personalized_single_4/", # Folder of the specific person
-        stylegan2_checkpoint_path="pretrained/ffhq2.pkl",
-        emo_mapping_checkpoint_path="checkpoints/emo_mapping_wplus/emo_mapping_wplus_2.pt",
-        vggface2_checkpoint_path="pretrained/resnet50_ft_weight.pkl", 
-        emonet_checkpoint_path="pretrained/emonet_8.pth",
-        log_path="logs/personalized", # logs during training
-        inversion_type='e4e', # e4e/w_encoder
-        output_path="checkpoints/",  # Output path
-        wplus=True  # Replace with True or False wplus/w
+        datapath=args.datapath,
+        stylegan2_checkpoint_path=args.stylegan2_checkpoint_path,
+        emo_mapping_checkpoint_path=args.emo_mapping_checkpoint_path,
+        vggface2_checkpoint_path=args.vggface2_checkpoint_path,
+        emonet_checkpoint_path=args.emonet_checkpoint_path,
+        log_path=args.log_path,
+        inversion_type=args.inversion_type,
+        output_path=args.output_path,
+        wplus=args.wplus
     )
