@@ -44,3 +44,17 @@
 <br>
 
 </div>
+
+## Citation
+
+If you use this code for your research, please cite our paper:
+
+```
+@inproceedings{azari2024emostyle,
+      title     = {EmoStyle: One-Shot Facial Expression Editing Using Continuous Emotion Parameters},
+      author    = {Azari, Bita and Lim, Angelica},
+      booktitle = {Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
+      pages     = {6385--6394},
+      year      = {2024}
+}
+```
