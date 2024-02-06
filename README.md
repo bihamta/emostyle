@@ -48,7 +48,7 @@ python train_emostyle.py \
     --emonet_checkpoint_path "pretrained/emonet_8.pth" \
     --log_path "logs/" \
     --output_path "checkpoints/" \
-    --wplus
+    --wplus True
 ```
 - `datapath`: Path to the dataset. This should be the directory containing your dataset files.
 - `stylegan2_checkpoint_path`: Path to the StyleGAN2 checkpoint. Provide the location of the pre-trained StyleGAN2 checkpoint file.
@@ -75,7 +75,7 @@ python personalized.py \
     --log_path "logs/personalized" \
     --inversion_type 'e4e' \
     --output_path "checkpoints/" \
-    --wplus
+    --wplus True
   ```
 - `datapath`: Path to the folder of the specific person in the dataset. This directory should contain the relevant data for the personalized training.
 - `stylegan2_checkpoint_path`: Path to the StyleGAN2 checkpoint. Provide the location of the pre-trained StyleGAN2 checkpoint file.
