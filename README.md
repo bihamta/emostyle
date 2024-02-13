@@ -37,6 +37,12 @@
 #### Dataset
 Use `generate_dataset_pkl.py` to generate images from [StyleGAN2](https://github.com/NVlabs/stylegan2?tab=readme-ov-file) domain. Following the recommendation in the original StyleGAN paper, we truncated the vectors by a factor of 0.7.
 
+### Pretrained Models
+- [EmoMapping wplus](https://drive.google.com/file/d/17C1-ACpPbFnaRNVYpDPrzNTYbFJPL_7h/view?usp=sharing) trained on generated images from StyleGAN2
+- [FFHQ StyleGAN](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/ffhq.pkl) StyleGANv2 model trained on FFHQ
+- [dlib landmarks model](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2) Used in background loss and pose loss + preprocessing images
+- |[IR-SE50 Model](https://drive.google.com/file/d/1KW7bjndL3QG3sxBbZxreGHigcCCpsDgn/view?usp=sharing) | Pretrained IR-SE50 model taken from [TreB1eN](https://github.com/TreB1eN/InsightFace_Pytorch) in Used ID loss
+  
 #### Train EmoMapping
 To train your model, use the `train_emostyle.py` script with the following command-line arguments:
 
@@ -48,7 +54,7 @@ python train_emostyle.py \
     --emonet_checkpoint_path "pretrained/emonet_8.pth" \
     --log_path "logs/" \
     --output_path "checkpoints/" \
-    --wplus
+    --wplus True
 ```
 - `datapath`: Path to the dataset. This should be the directory containing your dataset files.
 - `stylegan2_checkpoint_path`: Path to the StyleGAN2 checkpoint. Provide the location of the pre-trained StyleGAN2 checkpoint file.
@@ -75,7 +81,7 @@ python personalized.py \
     --log_path "logs/personalized" \
     --inversion_type 'e4e' \
     --output_path "checkpoints/" \
-    --wplus
+    --wplus True
   ```
 - `datapath`: Path to the folder of the specific person in the dataset. This directory should contain the relevant data for the personalized training.
 - `stylegan2_checkpoint_path`: Path to the StyleGAN2 checkpoint. Provide the location of the pre-trained StyleGAN2 checkpoint file.
