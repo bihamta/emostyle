@@ -123,7 +123,7 @@ python test.py \
 <br>
   <p align="center">
     <img src="resrc/barak_obama.gif" width="300" height="300" alt="Barak Obama">
-    <img src="resrc/taylor_swift.gif" width="300" height="300" alt="Taylor Swift">
+    <!-- <img src="resrc/taylor_swift.gif" width="300" height="300" alt="Taylor Swift"> -->
   </p>
 <br>
 
