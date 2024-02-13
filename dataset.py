@@ -19,6 +19,12 @@ class SyntheticDataset(torch.utils.data.Dataset):
                 transforms.Resize((256, 256)),
                 transforms.ToTensor()
             ])
+        self.num_samples = self.determine_dataset_length()
+    
+    def determine_dataset_length(self):
+        num_files = len([f for f in os.listdir(self.datapath) if f.endswith('.png')])
+        return num_files
+
 
     def __getitem__(self, index):
         image_path = os.path.join(self.datapath, f'{index:06}.png')
@@ -34,17 +40,14 @@ class SyntheticDataset(torch.utils.data.Dataset):
         return image, latent
 
     def __len__(self):
-        return 1000
+        return self.num_samples
 
 class PersonalizedSyntheticDataset(torch.utils.data.Dataset):
     def __init__(self, datapath='./dataset', inversion_type='e4e', loader=default_image_loader):
         self.datapath = datapath
         self.loader = loader
         self.inversion_type = inversion_type
-        # self.transform = transforms.Compose([
-        #         transforms.Resize((256, 256)),
-        #         transforms.ToTensor()
-        #     ])
+    
         self.image_paths = list(glob.glob(os.path.join(self.datapath, 'images/*')))
         self.transform = transforms.Compose([
                 transforms.Resize((1024, 1024)),
