@@ -26,7 +26,7 @@ def generate_data(
     mapping = G.mapping.requires_grad_(False)
     synthesis = G.synthesis.requires_grad_(False)
 
-    image_id = 0
+    image_id = 0 
     batch_size = 8
     for i in tqdm(range(image_id, n_samples, batch_size)):
         z = np.random.RandomState().randn(batch_size, 512).astype("float32")

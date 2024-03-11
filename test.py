@@ -132,7 +132,7 @@ def test(
                 image_tensors.append(generated_image_tensor) 
 
                 ax_g[iter].imshow(generated_image)
-                ax_g[iter].set_title("V: p{}, r{}, A: p{}, r{}".format(valence[v_idx], emos[0], arousal[a_idx], emos[1]),  fontsize = 40) 
+                ax_g[iter].set_title("V: p{:.2f}, r{:.2f}, A: p{:.2f}, r{:.2f}".format(valence[v_idx], emos[0], arousal[a_idx], emos[1]), fontsize=40)
                 ax_g[iter].axis('off')
                 iter += 1  
         
