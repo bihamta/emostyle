@@ -41,7 +41,8 @@ Use `generate_dataset_pkl.py` to generate images from [StyleGAN2](https://github
 - [EmoMapping wplus](https://drive.google.com/file/d/17C1-ACpPbFnaRNVYpDPrzNTYbFJPL_7h/view?usp=sharing) trained on generated images from StyleGAN2
 - [FFHQ StyleGAN](https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/ffhq.pkl) StyleGANv2 model trained on FFHQ
 - [dlib landmarks model](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2) Used in background loss and pose loss + preprocessing images
-- |[IR-SE50 Model](https://drive.google.com/file/d/1KW7bjndL3QG3sxBbZxreGHigcCCpsDgn/view?usp=sharing) | Pretrained IR-SE50 model taken from [TreB1eN](https://github.com/TreB1eN/InsightFace_Pytorch) in Used ID loss
+- [IR-SE50 Model](https://drive.google.com/file/d/1KW7bjndL3QG3sxBbZxreGHigcCCpsDgn/view?usp=sharing) Pretrained IR-SE50 model taken from [TreB1eN](https://github.com/TreB1eN/InsightFace_Pytorch) in Used ID loss
+- [Emonet](https://github.com/face-analysis/emonet/blob/master/pretrained/emonet_8.pth) 
   
 #### Train EmoMapping
 To train your model, use the `train_emostyle.py` script with the following command-line arguments:
