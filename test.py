@@ -35,6 +35,7 @@ STG_EMBED = 512
 INPUT_SIZE = 1024
 ITER_NUM = 500
 
+
 def test(
     images_path: str,
     stylegan2_checkpoint_path: str,
@@ -52,35 +53,41 @@ def test(
         is_pkl=True
     )
     stylegan.eval()
-    stylegan.requires_grad_(False)  
+    stylegan.requires_grad_(False)
 
     ckpt_emo = torch.load("pretrained/emonet_8.pth")
-    ckpt_emo = { k.replace('module.',''): v for k,v in ckpt_emo.items() }
+    ckpt_emo = {k.replace('module.', ''): v for k, v in ckpt_emo.items()}
     emonet = EmoNet(n_expression=8)
     emonet.load_state_dict(ckpt_emo, strict=False)
     emonet.eval()
-    
-    ckpt_emo_mapping = torch.load(checkpoint_path, map_location=torch.device('cpu'))
-    emo_mapping = EmoMappingW(EMO_EMBED, STG_EMBED)
+
+    ckpt_emo_mapping = torch.load(
+        checkpoint_path, map_location=torch.device('cpu'))
+    if wplus:
+        emo_mapping = EmoMappingWplus(INPUT_SIZE, EMO_EMBED, STG_EMBED)
+    else:
+        emo_mapping = EmoMappingW(EMO_EMBED, STG_EMBED)
+   # emo_mapping = EmoMappingW(EMO_EMBED, STG_EMBED)
     emo_mapping.load_state_dict(ckpt_emo_mapping['emo_mapping_state_dict'])
     emo_mapping.eval()
-    
 
     if is_cuda:
         emo_mapping.cuda()
         stylegan.cuda()
         emonet.cuda()
-    
+
     latents = {}
-    
+
     if test_mode == 'random':
         random_images = random.sample(range(1, 70000), 100)
         with open('random.pkl', 'wb') as f:
             pickle.dump(random_images, f)
-    
-        for image_number in range(len(random_images)): 
-            latent_path = images_path + str(random_images[image_number]).zfill(6) + ".npy" 
-            image_path = images_path + str(random_images[image_number]).zfill(6) + ".png"
+
+        for image_number in range(len(random_images)):
+            latent_path = images_path + \
+                str(random_images[image_number]).zfill(6) + ".npy"
+            image_path = images_path + \
+                str(random_images[image_number]).zfill(6) + ".png"
             image_latent = np.load(latent_path, allow_pickle=False)
             if wplus:
                 image_latent = np.expand_dims(image_latent[:, :], 0)
@@ -88,58 +95,84 @@ def test(
                 image_latent = np.expand_dims(image_latent[0, :], 0)
             image_latent = torch.from_numpy(image_latent).float()
             latents[image_path] = image_latent
-            
+
     elif test_mode == 'folder_images':
-        for image_file in glob.glob(image_path):
+        #         for image_file in glob.glob(images_path+"*"):
+        #            # latent_path = "1.npy"
+        #             latent_path = os.path.splitext(image_file)[0]+'.npy'
+        #             image_latent = np.load(latent_path, allow_pickle=False)
+        #             if wplus:
+        #                 image_latent = np.expand_dims(image_latent[:, :], 0)
+        #             else:
+        #                 image_latent = np.expand_dims(image_latent[0, :], 0)
+        #             image_latent = torch.from_numpy(image_latent).float()
+        #             latents[image_file] = image_latent
+        for image_file in glob.glob(images_path+"*"):
             latent_path = os.path.splitext(image_file)[0]+'.npy'
+            image_path = os.path.splitext(image_file)[0]+'.png'
             image_latent = np.load(latent_path, allow_pickle=False)
             if wplus:
                 image_latent = np.expand_dims(image_latent[:, :], 0)
             else:
                 image_latent = np.expand_dims(image_latent[0, :], 0)
             image_latent = torch.from_numpy(image_latent).float()
-            latents[image_file] = image_latent
-            
+            latents[image_path] = image_latent
+
     emos_data = {}
     for v in range(len(valence)):
         for a in range(len(arousal)):
             emos_data[(valence[v], arousal[a])] = []
-        
+
     num_images = len(valence) * len(arousal)
     for img, latent in latents.items():
-        input_image = Image.open(img).convert('RGB') #.transpose(0, 2, 1)
+        input_image = Image.open(img).convert('RGB')  # .transpose(0, 2, 1)
         image_name = os.path.basename(img)
 
-        _ , ax_g = plt.subplots(1, num_images, figsize=(100, 50) )
+        _, ax_g = plt.subplots(1, num_images, figsize=(100, 50))
         plt.subplots_adjust(left=.05, right=.95, wspace=0, hspace=0)
         iter = 0
-        
+
         image_tensors = []
         for v_idx in tqdm(range(len(valence))):
             for a_idx in range(len(arousal)):
-                emotion = torch.FloatTensor([valence[v_idx], arousal[a_idx]]).float().unsqueeze_(0)
+                emotion = torch.FloatTensor(
+                    [valence[v_idx], arousal[a_idx]]).float().unsqueeze_(0)
+
+                # If i don't add it, i will get an RuntimeError.
+                # Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu!
+                emotion = emotion.to(device=torch.device(
+                    'cuda' if torch.cuda.is_available() else 'cpu'))
+                latent = latent.to(device=torch.device(
+                    'cuda' if torch.cuda.is_available() else 'cpu'))
                 fake_latents = latent + emo_mapping(latent, emotion)
                 generated_image_tensor = stylegan.generate(fake_latents)
                 generated_image_tensor = (generated_image_tensor + 1.) / 2.
                 emo_embed = emonet(generated_image_tensor)
                 emos = (emo_embed[0][0], emo_embed[0][1])
-                
-                generated_image = generated_image_tensor.detach().cpu().squeeze().numpy()
-                generated_image = np.clip(generated_image*255, 0, 255).astype(np.int32)
-                generated_image = generated_image.transpose(1, 2, 0).astype(np.uint8)
 
-                emos_data[(valence[v_idx], arousal[a_idx])].append(abs(emos[0] - valence[v_idx]), abs(emos[1] - arousal[a_idx]))
-                image_tensors.append(generated_image_tensor) 
+                generated_image = generated_image_tensor.detach().cpu().squeeze().numpy()
+                generated_image = np.clip(
+                    generated_image*255, 0, 255).astype(np.int32)
+                generated_image = generated_image.transpose(
+                    1, 2, 0).astype(np.uint8)
+
+                # emos_data[(valence[v_idx], arousal[a_idx])].append(
+                #     abs(emos[0] - valence[v_idx]), abs(emos[1] - arousal[a_idx]))
+                # add []
+                emos_data[(valence[v_idx], arousal[a_idx])].append(
+                    [abs(emos[0] - valence[v_idx]), abs(emos[1] - arousal[a_idx])])
+                image_tensors.append(generated_image_tensor)
 
                 ax_g[iter].imshow(generated_image)
-                ax_g[iter].set_title("V: p{:.2f}, r{:.2f}, A: p{:.2f}, r{:.2f}".format(valence[v_idx], emos[0], arousal[a_idx], emos[1]), fontsize=40)
+                ax_g[iter].set_title("V: p{:.2f}, r{:.2f}, A: p{:.2f}, r{:.2f}".format(
+                    valence[v_idx], emos[0], arousal[a_idx], emos[1]), fontsize=40)
                 ax_g[iter].axis('off')
-                iter += 1  
-        
+                iter += 1
+
         plt.savefig("result.png", bbox_inches='tight')
-    
+
         fig = plt.figure(figsize=(80, 20))
-        
+
         with open('emos_data.pkl', 'wb') as f:
             pickle.dump(emos_data, f)
         output_image = Image.open("result.png").convert('RGB')
@@ -153,14 +186,18 @@ def test(
         pos_old = ax_input.get_position()
         pos_new = [pos_old.x0,  0.335,  pos_old.width, pos_old.height]
         ax_input.set_position(pos_new)
-        plt.savefig(output_path + "result_{}".format(image_name), bbox_inches='tight')
-        
+        plt.savefig(output_path + "result_{}".format(image_name),
+                    bbox_inches='tight')
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Testing script")
-    
+
     parser.add_argument("--images_path", type=str, default="dataset/1024_pkl/")
-    parser.add_argument("--stylegan2_checkpoint_path", type=str, default="pretrained/ffhq2.pkl")
-    parser.add_argument("--checkpoint_path", type=str, default="checkpoints/emo_mapping_w.pt")
+    parser.add_argument("--stylegan2_checkpoint_path",
+                        type=str, default="pretrained/ffhq2.pkl")
+    parser.add_argument("--checkpoint_path", type=str,
+                        default="checkpoints/emo_mapping_w.pt")
     parser.add_argument("--output_path", type=str, default="results/")
     parser.add_argument("--test_mode", type=str, default="random")
     parser.add_argument("--valence", type=float, nargs='+', default=[0.5])
@@ -179,5 +216,3 @@ if __name__ == "__main__":
         arousal=args.arousal,
         wplus=args.wplus
     )
-
-        
